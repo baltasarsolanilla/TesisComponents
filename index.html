@@ -8,6 +8,8 @@
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="objetivos-list.module.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="accordion.css">
+
   </head>
   <body>
 
@@ -44,7 +46,7 @@
 
   <uib-accordion close-others="oneAtATime">
     
-    <div uib-accordion-group class="panel-default"  ng-repeat="group in groups" is-open="group.open">
+    <div uib-accordion-group class="panel-default accordionSize" ng-repeat="group in groups" is-open="group.open">
         <uib-accordion-heading>
            {{group.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.open, 'glyphicon-chevron-right': !status.open}"></i>
           </uib-accordion-heading>
