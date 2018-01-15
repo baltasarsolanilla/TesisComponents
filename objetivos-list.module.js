@@ -1,7 +1,7 @@
 angular.module('objetivosList', ['ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 angular.module('objetivosList').controller('ObjetivosListCtrl', function ($scope) {
   $scope.oneAtATime = false;
-
+  $scope.nuevaPerspectiva = {};
   $scope.groups = [
     {
       perspectiva: 'Finanzas',

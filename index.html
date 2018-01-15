@@ -29,8 +29,27 @@
     </div>
   </script>
 
-  <input type="text" ng-model="nuevaPerspectiva.perspectiva"><button type="button" class="btn btn-default btn-sm" ng-click="addPerspectiva()">Agregar Perspectiva</button><br/>
-  <input type="text" ng-model="nuevoObjetivo.nombre"><button type="button" class="btn btn-default btn-sm" ng-click="addObjetivo()">Agregar Objetivo</button>
+  <input type="text" ng-model="nuevaPerspectiva.perspectiva" onclick="activar('botonAddPers')" placeholder="nombre Perspectiva..."> 
+
+  <script type="text/javascript">
+    function activar(nombreBoton){
+      var boton = document.getElementById(nombreBoton);
+      boton.disabled = false;
+      boton.enable = true;
+      boton.style="color:white;"
+    }
+  </script>
+  <script type="text/javascript">
+    function desactivar(nombreBoton){
+      var boton = document.getElementById(nombreBoton);
+      boton.disabled = true;
+      boton.enable = false;
+      style="color:black;"
+    }
+  </script>
+  <button type="button" id="botonAddPers" class="btn btn-primary" disabled="true" onclick="desactivar('botonAddPers')" ng-click="addPerspectiva()" style="color:black;">Agregar Perspectiva</button><br/>
+  <input type="text" ng-model="nuevoObjetivo.nombre" onclick="activar('botonAddObj')" placeholder="nombre Objetivo..."> 
+  <button type="button" id="botonAddObj" class="btn btn-primary" disabled="true" onclick="desactivar('botonAddObj')" ng-click="addObjetivo()" style="color:black;">Agregar Objetivo</button>
  
   <div class="checkbox">
     <label>
