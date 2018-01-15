@@ -1,25 +1,31 @@
 angular.module('objetivosList', ['ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 angular.module('objetivosList').controller('ObjetivosListCtrl', function ($scope) {
-  $scope.oneAtATime = true;
+  $scope.oneAtATime = false;
 
   $scope.groups = [
     {
-      title: 'Dynamic Group Header - 1',
-      content: 'Dynamic Group Body - 1',
+      perspectiva: 'Finanzas',
+      objetivos: [{nombre: 'obj1'}, {nombre: 'obj2'}, {nombre: 'obj3'}],
     },
     {
-      title: 'Dynamic Group Header - 2',
-      content: 'Dynamic Group Body - 2',
+      perspectiva: 'Clientes',
+      objetivos: [{nombre: 'obj4'}, {nombre: 'obj5'}, {nombre: 'obj6'}],
     }
   ];
 
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
+  $scope.addObjetivo = function() {
+    $scope.groups[$scope.groups.length -1].objetivos.push($scope.nuevoObjetivo);
+    $scope.nuevoObjetivo = {};
   };
 
+  $scope.addPerspectiva = function(){
+    $scope.nuevaPerspectiva.objetivos = [];
+    $scope.groups.push($scope.nuevaPerspectiva);
+    $scope.nuevaPerspectiva = {};
+  }
+  /*
+    VER SI QUEDA EL SCOPE STATUS!
+  */
   $scope.status = {
     isCustomHeaderOpen: false,
     isFirstOpen: true,

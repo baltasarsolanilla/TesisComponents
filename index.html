@@ -29,14 +29,9 @@
     </div>
   </script>
 
-  <p>
-    <button type="button" class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
-    <button type="button" class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
-  </p>
-
-  <input type="text"> <button type="button" class="btn btn-default btn-sm" ng-click="funcion-agregar-perspectiva">Agregar Perspectiva</button><br/>
-  <input type="text"><button type="button" class="btn btn-default btn-sm" ng-click="funcion-agregar-objetivo">Agregar Objetivo</button>
-
+  <input type="text" ng-model="nuevaPerspectiva.perspectiva"><button type="button" class="btn btn-default btn-sm" ng-click="addPerspectiva()">Agregar Perspectiva</button><br/>
+  <input type="text" ng-model="nuevoObjetivo.nombre"><button type="button" class="btn btn-default btn-sm" ng-click="addObjetivo()">Agregar Objetivo</button>
+ 
   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="oneAtATime">
@@ -48,9 +43,13 @@
     
     <div uib-accordion-group class="panel-default accordionSize" ng-repeat="group in groups" is-open="group.open">
         <uib-accordion-heading>
-           {{group.title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.open, 'glyphicon-chevron-right': !status.open}"></i>
-          </uib-accordion-heading>
-      {{group.content}}
+           {{group.perspectiva}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </uib-accordion-heading>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="objetivo in group.objetivos | orderBy:'nombre'">
+            {{objetivo.nombre}}
+          </li>
+        </ul>  
     </div>
 
   </uib-accordion>
