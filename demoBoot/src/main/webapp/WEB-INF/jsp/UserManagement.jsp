@@ -167,10 +167,13 @@
         </uib-accordion-heading>
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="objetivo in group.objetivos | orderBy:'nombre'">
-            {{objetivo.nombre}}
+            {{objetivo.name}}
           </li>
         </ul>  
     </div>
+    {{objetivosRecuperados}}
+    <br/>
+    {{segundo}}
 
   </uib-accordion>
 </div>

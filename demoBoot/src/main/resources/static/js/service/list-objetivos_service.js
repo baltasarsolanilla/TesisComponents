@@ -17,7 +17,7 @@ App.factory('listObjetivosService', ['$http', '$q', function($http, $q){
 							);
 			},
 		    
-		    createUser: function(objetivo){
+		    createObjetivo: function(objetivo){
 					return $http.post('http://localhost:8080/Objetivo/', objetivo)
 							.then(
 									function(response){
