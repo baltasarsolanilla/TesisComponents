@@ -2,54 +2,39 @@
 
 App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function($scope, listObjetivosService) {
   $scope.oneAtATime = false;
-  $scope.perspectiva = {name:''};
-  var pers_name = {name: 'Finanzas'};
-  $scope.objetivo = {name:'', perspectiva: pers_name};
-//var lastPerspectiva = $scope.groups[$scope.groups.length -1].perspectiva;
+  $scope.groups = [];
+  $scope.objetivo = {name:'', perspectiva: {id:'1'}};
   
   
-  
-  $scope.groups = [
-    {
-      name: 'Finanzas',
-      objetivos: [{nombre: 'obj1'}, {nombre: 'obj2'}, {nombre: 'obj3'}],
-    },
-    {
-      name: 'Clientes',
-      objetivos: [{nombre: 'obj4'}, {nombre: 'obj5'}, {nombre: 'obj6'}],
-    }
-  ];
-  
+  /*
+   * Carga el elemento accordion con todas las perspectivas y objetivos.
+   */
   //Arreglar orden ejecucion -> hacer sincrónico
   $scope.fetchAllListObjetivos = function(){
 	  listObjetivosService.fetchAllPerspectivas()
           .then(
-					    function(d) {
-						        $scope.groups = d;//mejorarlo
+					    function(dataPerspectivas) {
+						        $scope.groups = dataPerspectivas;
 					       },
     					function(errResponse){
-    						console.error('Error while fetching perspectivas');
+    						console.error('Error while fetching Perspectivas');
     					}
 			   );
 	  listObjetivosService.fetchAllObjetivos()
 	  	 .then(
-	  			 function(d){
-	  				 $scope.groups[$scope.groups.length -1].objetivos = d;
-	  				 $scope.objetivosRecuperados = d;
+	  			 function(dataObjetivos){
+	  				 $scope.groups[$scope.groups.length -1].objetivos = dataObjetivos;
 	  			 },
 	  			 function(errResponse){
-	  				console.error('Error while fetching objetivos');
+	  				console.error('Error while fetching Objetivos');
 	  			 });
 	  	 
   };
   
-  $scope.fetchAllListObjetivos(); //Debe cargar $scope.groups con toda la data (perspectiva + objetivos)
-  
-  
-  $scope.addObjetivo = function() {
-    $scope.groups[$scope.groups.length -1].objetivos.push($scope.nuevoObjetivo);
-    $scope.nuevoObjetivo = {};
-  };
+  /*
+   * Carga inicial de elemento accordion
+   */
+  $scope.fetchAllListObjetivos(); 
   
   $scope.createObjetivo = function(){
 	  listObjetivosService.createObjetivo($scope.objetivo)
@@ -63,13 +48,6 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
 		              }	
           );
   };
-  
-  
-  $scope.addPerspectiva = function(){
-    $scope.nuevaPerspectiva.objetivos = [];
-    $scope.groups.push($scope.nuevaPerspectiva);
-    $scope.nuevaPerspectiva = {};
-  }
   
   $scope.createPerspectiva = function(){
 	  listObjetivosService.createPerspectiva($scope.perspectiva)
@@ -92,4 +70,5 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
     isFirstOpen: true,
     isFirstDisabled: false
   };
+  
 }]);

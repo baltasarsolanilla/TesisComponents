@@ -6,7 +6,6 @@ import com.BaltaJuanTesis.demoBoot.modelo.Perspectiva;
 
 
 public interface PerspectivaService {
-	Perspectiva findByName(String name);
 	
 	void savePerspectiva(Perspectiva user);
 	

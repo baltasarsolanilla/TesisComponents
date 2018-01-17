@@ -6,7 +6,6 @@ import com.BaltaJuanTesis.demoBoot.modelo.Objetivo;
 
 
 public interface ObjetivoService {
-	Objetivo findByName(String name);
 	
 	void saveObjetivo(Objetivo user);
 	

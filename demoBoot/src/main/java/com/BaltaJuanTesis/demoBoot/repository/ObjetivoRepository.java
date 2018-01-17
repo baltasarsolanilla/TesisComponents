@@ -6,5 +6,4 @@ import com.BaltaJuanTesis.demoBoot.modelo.Objetivo;
 
 
 public interface ObjetivoRepository extends CrudRepository<Objetivo, String> {
-	Objetivo findByName(String name);
 }

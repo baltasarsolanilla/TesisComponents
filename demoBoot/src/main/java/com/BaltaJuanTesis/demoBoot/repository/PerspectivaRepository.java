@@ -6,5 +6,4 @@ import com.BaltaJuanTesis.demoBoot.modelo.Perspectiva;
 
 
 public interface PerspectivaRepository extends CrudRepository<Perspectiva, String> {
-	Perspectiva findByName(String name);
 }

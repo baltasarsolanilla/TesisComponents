@@ -23,10 +23,6 @@ public class ObjetivoServiceImpl implements ObjetivoService {
 	@Autowired
 	private ObjetivoRepository ObjetivoRepository;
 
-	public Objetivo findByName(String name) {
-		return ObjetivoRepository.findByName(name);
-	}
-
 	public void saveObjetivo(Objetivo user) {
 		ObjetivoRepository.save(user);
 		
@@ -35,9 +31,4 @@ public class ObjetivoServiceImpl implements ObjetivoService {
 	public List<Objetivo> findAllObjetivos() {
 		return (List<Objetivo>) ObjetivoRepository.findAll();
 	}
-	
-	
-
-
-
 }

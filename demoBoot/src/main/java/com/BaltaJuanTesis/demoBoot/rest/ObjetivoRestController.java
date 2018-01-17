@@ -45,7 +45,7 @@ public class ObjetivoRestController {
 	 
 	        ObjetivoService.saveObjetivo(Objetivo);
 	        
-	        //eliminar
+	        //eliminar VERRR
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setLocation(ucBuilder.path("/Objetivo/{name}").buildAndExpand(Objetivo.getName()).toUri());
 	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
