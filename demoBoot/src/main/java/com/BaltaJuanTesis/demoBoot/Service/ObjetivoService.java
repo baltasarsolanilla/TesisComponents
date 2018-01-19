@@ -9,5 +9,12 @@ public interface ObjetivoService {
 	
 	void saveObjetivo(Objetivo user);
 	
-	List<Objetivo> findAllObjetivos(); 
+	List<Objetivo> findAllObjetivos();
+
+	Objetivo findById(Long id);
+    
+    Objetivo findByName(String name);
+    
+    void deleteObjetivoById(Long id);
+
 }

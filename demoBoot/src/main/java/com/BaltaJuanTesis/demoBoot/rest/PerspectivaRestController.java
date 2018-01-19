@@ -24,7 +24,7 @@ public class PerspectivaRestController {
 	  PerspectivaService perspectivaService;  //Service which will do all data retrieval/manipulation work
 	 
 	    
-	    //-------------------Retrieve All Users--------------------------------------------------------
+	    //-------------------Retrieve All Perspectivas--------------------------------------------------------
 	     
 	    @RequestMapping(value = "/Perspectiva/", method = RequestMethod.GET)
 	    public ResponseEntity<List<Perspectiva>> listAllPerspectivas() {
@@ -36,7 +36,7 @@ public class PerspectivaRestController {
 	    }
 	    
 
-	    //-------------------Create a User--------------------------------------------------------
+	    //-------------------Create a Perspectiva--------------------------------------------------------
 	     
 	    @RequestMapping(value = "/Perspectiva/", method = RequestMethod.POST)
 	    public ResponseEntity<Void> createPerspectiva(@RequestBody Perspectiva Perspectiva,    UriComponentsBuilder ucBuilder) {
@@ -44,11 +44,28 @@ public class PerspectivaRestController {
 	 
 	        perspectivaService.savePerspectiva(Perspectiva);
 	        
-	        //eliminar
+	        //eliminar VER
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setLocation(ucBuilder.path("/Perspectiva/{name}").buildAndExpand(Perspectiva.getName()).toUri());
 	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	    }
+	    
+	    //-------------------Delete Perspectiva--------------------------------------------------------
+        
+        @RequestMapping(value = "/Perspectiva/{name}", method = RequestMethod.DELETE)
+        public ResponseEntity<Perspectiva> deletePerspectiva(@PathVariable("name") String name) {
+            System.out.println("Fetching & Deleting perspectiva with name " + name);
+
+            Perspectiva perspectiva= perspectivaService.findByName(name);
+            if (perspectiva == null) {
+                System.out.println("Unable to delete. Perspectiva with name" + name+ " not found");
+                return new ResponseEntity<Perspectiva>(HttpStatus.NOT_FOUND);
+            }
+     
+            perspectivaService.deletePerspectivaById(perspectiva.getId());
+            return new ResponseEntity<Perspectiva>(HttpStatus.NO_CONTENT);
+        }
+
 	    
 	   
 	    

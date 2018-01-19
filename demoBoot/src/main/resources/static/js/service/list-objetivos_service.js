@@ -54,7 +54,34 @@ App.factory('listObjetivosService', ['$http', '$q', function($http, $q){
 									return $q.reject(errResponse);
 								}
 						);
-	    },
+		    },
+		    
+		    deleteObjetivo: function(name){
+                return $http.delete('http://localhost:8080/Objetivo/' + name)
+                    .then(
+                            function(response){
+                                return response.data;
+                            }, 
+                            function(errResponse){
+                                console.error('Error while deleting objetivo');
+                                return $q.reject(errResponse);
+                            }
+                    );
+		    },
+        
+	        deletePerspectiva: function(name){
+	            return $http.delete('http://localhost:8080/Perspectiva/' + name)
+	                .then(
+	                        function(response){
+	                            return response.data;
+	                        }, 
+	                        function(errResponse){
+	                            console.error('Error while deleting Perspectiva');
+	                            return $q.reject(errResponse);
+	                        }
+	                );
+	        },
+
 	    
 		
 	};

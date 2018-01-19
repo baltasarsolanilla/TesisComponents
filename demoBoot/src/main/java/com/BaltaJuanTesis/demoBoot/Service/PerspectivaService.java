@@ -9,5 +9,12 @@ public interface PerspectivaService {
 	
 	void savePerspectiva(Perspectiva user);
 	
-	List<Perspectiva > findAllPerspectivas(); 
+	List<Perspectiva > findAllPerspectivas();
+	
+	Perspectiva findById(Long id);
+	
+	Perspectiva findByName(String name);
+    
+    void deletePerspectivaById(Long id);
+
 }

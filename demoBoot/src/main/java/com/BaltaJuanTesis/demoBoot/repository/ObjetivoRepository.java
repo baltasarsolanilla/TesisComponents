@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.BaltaJuanTesis.demoBoot.modelo.Objetivo;
 
 
-public interface ObjetivoRepository extends CrudRepository<Objetivo, String> {
+public interface ObjetivoRepository extends CrudRepository<Objetivo, Long> {
+	Objetivo findByName(String name);
 }

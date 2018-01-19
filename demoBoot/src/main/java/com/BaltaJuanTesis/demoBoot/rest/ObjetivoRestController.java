@@ -25,7 +25,7 @@ public class ObjetivoRestController {
 	  ObjetivoService ObjetivoService;  //Service which will do all data retrieval/manipulation work
 	 
 	    
-	    //-------------------Retrieve All Users--------------------------------------------------------
+	    //-------------------Retrieve All Objetivo--------------------------------------------------------
 	     
 	    @RequestMapping(value = "/Objetivo/", method = RequestMethod.GET)
 	    public ResponseEntity<List<Objetivo>> listAllObjetivos() {
@@ -37,7 +37,7 @@ public class ObjetivoRestController {
 	    }
 	    
 
-	    //-------------------Create a User--------------------------------------------------------
+	    //-------------------Create a Objetivo--------------------------------------------------------
 	     
 	    @RequestMapping(value = "/Objetivo/", method = RequestMethod.POST)
 	    public ResponseEntity<Void> createObjetivo(@RequestBody Objetivo Objetivo,    UriComponentsBuilder ucBuilder) {
@@ -50,6 +50,23 @@ public class ObjetivoRestController {
 	        headers.setLocation(ucBuilder.path("/Objetivo/{name}").buildAndExpand(Objetivo.getName()).toUri());
 	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	    }
+	    
+	    //-------------------Delete Objetivo--------------------------------------------------------
+        
+        @RequestMapping(value = "/Objetivo/{name}", method = RequestMethod.DELETE)
+        public ResponseEntity<Objetivo> deleteObjetivo(@PathVariable("name") String name) {
+            System.out.println("Fetching & Deleting objetivo with name " + name);
+       
+            Objetivo objetivo = ObjetivoService.findByName(name);
+            if (objetivo == null) {
+                System.out.println("Unable to delete. Objetivo with name" + name+ " not found");
+                return new ResponseEntity<Objetivo>(HttpStatus.NOT_FOUND);
+            }
+     
+            ObjetivoService.deleteObjetivoById(objetivo.getId());
+            return new ResponseEntity<Objetivo>(HttpStatus.NO_CONTENT);
+        }
+
 	    
 	   
 	    

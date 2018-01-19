@@ -2,9 +2,9 @@
 
 App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function($scope, listObjetivosService) {
   $scope.oneAtATime = false;
+  $scope.initiallyFirstOpen = true;
   $scope.groups = [];
-  $scope.objetivo = {name:'', perspectiva: {id:'1'}};
-  
+  $scope.objetivo = {name:'', perspectiva: {id: ''}};
   
   /*
    * Carga el elemento accordion con todas las perspectivas y objetivos.
@@ -13,22 +13,23 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
   $scope.fetchAllListObjetivos = function(){
 	  listObjetivosService.fetchAllPerspectivas()
           .then(
-					    function(dataPerspectivas) {
-						        $scope.groups = dataPerspectivas;
-					       },
-    					function(errResponse){
-    						console.error('Error while fetching Perspectivas');
-    					}
-			   );
+				    function(dataPerspectivas) {
+					        $scope.groups = dataPerspectivas;
+					        $scope.perspectivasList = dataPerspectivas;
+				       },
+					function(errResponse){
+						console.error('Error while fetching Perspectivas');
+					});
+	  
 	  listObjetivosService.fetchAllObjetivos()
 	  	 .then(
-	  			 function(dataObjetivos){
-	  				 $scope.groups[$scope.groups.length -1].objetivos = dataObjetivos;
-	  			 },
-	  			 function(errResponse){
-	  				console.error('Error while fetching Objetivos');
-	  			 });
-	  	 
+		  			 function(dataObjetivos){
+		  				 $scope.groups[0].objetivos = dataObjetivos;
+		  				 $scope.objetivosList = dataObjetivos;
+		  			 },
+		  			 function(errResponse){
+		  				console.error('Error while fetching Objetivos');
+		  			 });	 
   };
   
   /*
@@ -62,9 +63,34 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
           );
   };
   
+  $scope.deleteObjetivo = function(){
+      listObjetivosService.deleteObjetivo($scope.objetivo.name)
+              .then(
+                      //$scope.fetchAllObjetivos,
+            		  $scope.fetchAllListObjetivos,
+                      function(errResponse){
+                           console.error('Error while deleting Objetivo.');
+                      }    
+          );
+  };
+  
+  $scope.deletePerspectiva = function(){
+      listObjetivosService.deletePerspectiva($scope.perspectiva.name)
+              .then(
+            		  //$scope.fetchAllPerspectivas, 
+                      //$scope.fetchAllObjetivos,
+            		  $scope.fetchAllListObjetivos,
+                      function(errResponse){
+                           console.error('Error while deleting Perspectiva.');
+                      }    
+          );
+  };
+
+  
   /*
     VER SI QUEDA EL SCOPE STATUS!
   */
+  
   $scope.status = {
     isCustomHeaderOpen: false,
     isFirstOpen: true,

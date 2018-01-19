@@ -31,10 +31,14 @@
   		</script>
 
   <input type="text" ng-model="perspectiva.name" placeholder="nombre Perspectiva..."> 
-  <button type="button" class="btn btn-primary" ng-click="createPerspectiva()">Agregar Perspectiva</button><br/>
+  <button type="button" class="btn btn-primary" ng-click="createPerspectiva()">Agregar Perspectiva</button>
+  <button type="button" class="btn btn-danger" ng-click="deletePerspectiva()">Eliminar Perspectiva</button><br/>
   
-  <input type="text" ng-model="objetivo.name" placeholder="nombre Objetivo..."> 
-  <button type="button" class="btn btn-primary" ng-click="createObjetivo()">Agregar Objetivo</button><br/>
+  <input type="text" ng-model="objetivo.name" placeholder="nombre Objetivo...">
+  <input type="text" ng-model="objetivo.perspectiva.id" placeholder="id Perspectiva">  
+  <button type="button" class="btn btn-primary" ng-click="createObjetivo()">Agregar Objetivo</button>
+  <button type="button" class="btn btn-danger" ng-click="deleteObjetivo()">Eliminar Objetivo</button><br/>
+  
   
   <div class="checkbox">
     <label>
@@ -43,18 +47,28 @@
     </label>
   </div>
 
+ 
   <uib-accordion close-others="oneAtATime">
     <div uib-accordion-group class="panel-default accordionSize" ng-repeat="group in groups" is-open="group.open">
         <uib-accordion-heading>
-           {{group.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.open, 'glyphicon-chevron-right': !status.open}"></i>
+           {{group.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': group.open, 'glyphicon-chevron-right': !group.open}"></i>
         </uib-accordion-heading>
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="objetivo in group.objetivos | orderBy:'nombre'">
+          <li class="list-group-item" ng-repeat="objetivo in group.objetivos">
             {{objetivo.name}}
           </li>
         </ul>  
     </div>
   </uib-accordion>
+  
+  
+  <h4>Lista de Perspectivas</h4>
+  {{perspectivasList}}
+  <h4>Lista de Objetivos</h4>
+  {{objetivosList}}
+  <h4>Lista Groups</h4>
+  {{groups}}
+  
 </div>
 		
       <script src="<c:url value='js/app.js' />"></script>

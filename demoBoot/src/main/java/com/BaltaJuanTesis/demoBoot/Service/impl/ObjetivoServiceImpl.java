@@ -31,4 +31,19 @@ public class ObjetivoServiceImpl implements ObjetivoService {
 	public List<Objetivo> findAllObjetivos() {
 		return (List<Objetivo>) ObjetivoRepository.findAll();
 	}
+	
+	@Override
+    public Objetivo findByName(String name) {
+        return ObjetivoRepository.findByName(name);
+    }
+    @Override
+    public void deleteObjetivoById(Long id){
+        ObjetivoRepository.delete(id);
+        
+    }
+    @Override
+    public Objetivo findById(Long id) {
+        return ObjetivoRepository.findOne(id);
+    }
+
 }
