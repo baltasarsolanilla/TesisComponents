@@ -27,7 +27,7 @@ public class ObjetivoServiceImpl implements ObjetivoService {
 		ObjetivoRepository.save(user);
 		
 	}
-
+	
 	public List<Objetivo> findAllObjetivos() {
 		return (List<Objetivo>) ObjetivoRepository.findAll();
 	}
@@ -45,5 +45,5 @@ public class ObjetivoServiceImpl implements ObjetivoService {
     public Objetivo findById(Long id) {
         return ObjetivoRepository.findOne(id);
     }
-
+    
 }

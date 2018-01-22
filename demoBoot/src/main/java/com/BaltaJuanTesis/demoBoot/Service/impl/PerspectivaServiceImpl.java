@@ -23,6 +23,7 @@ public class PerspectivaServiceImpl implements PerspectivaService {
 		
 	}
 
+	//MODIFIED
 	public List<Perspectiva> findAllPerspectivas() {
 		return (List<Perspectiva>) PerspectivaRepository.findAll();
 	}
@@ -31,10 +32,12 @@ public class PerspectivaServiceImpl implements PerspectivaService {
     public Perspectiva findByName(String name) {
         return PerspectivaRepository.findByName(name);
     }
+	
     @Override
     public Perspectiva findById(Long id) {
         return PerspectivaRepository.findOne(id);
     }
+    
     public void deletePerspectivaById(Long id){
         PerspectivaRepository.delete(id);
         

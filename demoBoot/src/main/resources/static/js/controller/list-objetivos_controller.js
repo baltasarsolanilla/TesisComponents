@@ -5,6 +5,7 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
   $scope.initiallyFirstOpen = true;
   $scope.groups = [];
   $scope.objetivo = {name:'', perspectiva: {id: ''}};
+  $scope.perspectivasList = [];
   
   /*
    * Carga el elemento accordion con todas las perspectivas y objetivos.
@@ -15,7 +16,7 @@ App.controller('ObjetivosListCtrl', ['$scope', 'listObjetivosService', function(
           .then(
 				    function(dataPerspectivas) {
 					        $scope.groups = dataPerspectivas;
-					        $scope.perspectivasList = dataPerspectivas;
+					        $scope.perspectivasList = JSON.parse(JSON.stringify(dataPerspectivas));
 				       },
 					function(errResponse){
 						console.error('Error while fetching Perspectivas');
