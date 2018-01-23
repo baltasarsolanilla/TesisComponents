@@ -16,4 +16,5 @@ public @Data class Perspectiva {
 	private long id;
 	
 	private String name;
+
 }

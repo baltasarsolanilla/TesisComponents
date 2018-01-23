@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.BaltaJuanTesis.demoBoot.Service.ObjetivoService;
 import com.BaltaJuanTesis.demoBoot.modelo.Objetivo;
-import com.BaltaJuanTesis.demoBoot.modelo.Perspectiva;
 import com.BaltaJuanTesis.demoBoot.repository.ObjetivoRepository;
 
 @Service("ObjetivoService")
@@ -31,6 +30,7 @@ public class ObjetivoServiceImpl implements ObjetivoService {
 	public List<Objetivo> findAllObjetivos() {
 		return (List<Objetivo>) ObjetivoRepository.findAll();
 	}
+
 	
 	@Override
     public Objetivo findByName(String name) {

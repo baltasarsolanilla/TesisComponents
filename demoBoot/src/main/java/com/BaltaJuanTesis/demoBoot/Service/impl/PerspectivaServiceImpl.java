@@ -16,30 +16,30 @@ import com.BaltaJuanTesis.demoBoot.repository.PerspectivaRepository;
 public class PerspectivaServiceImpl implements PerspectivaService {
 	
 	@Autowired
-	private PerspectivaRepository PerspectivaRepository;
+	private PerspectivaRepository perspectivaRepository;
 
 	public void savePerspectiva(Perspectiva user) {
-		PerspectivaRepository.save(user);
+		perspectivaRepository.save(user);
 		
 	}
 
 	//MODIFIED
 	public List<Perspectiva> findAllPerspectivas() {
-		return (List<Perspectiva>) PerspectivaRepository.findAll();
+		return (List<Perspectiva>) perspectivaRepository.findAll();
 	}
 	
 	@Override
     public Perspectiva findByName(String name) {
-        return PerspectivaRepository.findByName(name);
+        return perspectivaRepository.findByName(name);
     }
 	
     @Override
     public Perspectiva findById(Long id) {
-        return PerspectivaRepository.findOne(id);
+        return perspectivaRepository.findOne(id);
     }
     
     public void deletePerspectivaById(Long id){
-        PerspectivaRepository.delete(id);
+        perspectivaRepository.delete(id);
         
     }
 }
